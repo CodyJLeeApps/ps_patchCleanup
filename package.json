@@ -1,0 +1,26 @@
+{
+  "name": "ps_patchcleanup",
+  "version": "1.0.0",
+  "description": "Coding project for Platform Science to show testing fundamentals",
+  "main": "codecept.conf.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "npm run codeceptjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodyJLeeApps/ps_patchCleanup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodyJLeeApps/ps_patchCleanup/issues"
+  },
+  "homepage": "https://github.com/CodyJLeeApps/ps_patchCleanup#readme",
+  "dependencies": {
+    "codeceptjs": "^3.1.2"
+  }
+}
