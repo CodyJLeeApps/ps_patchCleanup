@@ -32,7 +32,7 @@ const invalidRoomSizes = [
     [2, -1],
 ];
 
-Feature('Hoover Room Sizes')
+Feature('Hoover Initial Room Sizes')
 
     Data(validRoomSizes).Scenario('Should return success for valid starting room sizes', async ({I, current}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
