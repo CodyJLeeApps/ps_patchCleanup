@@ -1,6 +1,6 @@
 /* 
     This test suite assumes valid mock values for the values: starting coordinates, patch coordinates, 
-    and movement instruction set so that it can validate the API responds properly to room size input.
+    and movement instruction set so that it can validate the API responds properly to room size input. The room size should be valid rectangular inputs, i.e. [2, 3] or [5, 5]
 */
 
 // mock constants
