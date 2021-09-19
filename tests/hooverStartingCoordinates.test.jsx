@@ -8,19 +8,27 @@ const mockRoomSize = [5, 5];
 const mockDirtPatches = [[1, 0], [2, 2], [2, 3]];
 const mockInstructions = '';
 
-// test inputs
+/* Test Inputs */
+// Valid starting coordinates would be any coordinates
+// that would be inside the bounds of the room;
+// i.e. inside of [0, 0] -> [roomSizeX, roomSizeY]
 const validStartingCoordinates = [
     [0, 0],
     [1, 1],
     [2, 4],
     mockRoomSize
 ];
+
+// Invalid starting coordinates would be any coordinates
+// that would be outside the bounds of the room; 
+// i.e. outside of [0, 0] -> [roomSizeX, roomSizeY]
 const invalidStartingCoordinates = [
     [-1, -1], 
     [-5, -5], 
     [-1, 1], 
     [1, -1],
-    [mockRoomSize[0] + 1, mockRoomSize[1] + 1]
+    [mockRoomSize[0] + 1, mockRoomSize[1] + 1],
+    ['banana', 'pear']
 ];
 
 Feature('Hoover Starting Coordinates')
