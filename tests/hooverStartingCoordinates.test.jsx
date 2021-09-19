@@ -1,6 +1,6 @@
 /*
-    This test suite assumes valid mock values for the values: room size, patch locations, 
-    and instruction set so that it can validate the API responds properly to starting location input.
+    This test suite assumes valid mock values for the values: room size, patch coordinates, 
+    and instruction set so that it can validate the API responds properly to starting coordinate input.
 */
 
 // mock constants
@@ -9,13 +9,13 @@ const mockDirtPatches = [[1, 0], [2, 2], [2, 3]];
 const mockInstructions = '';
 
 // test inputs
-const validStartingLocations = [
+const validStartingCoordinates = [
     [0, 0],
     [1, 1],
     [2, 4],
     mockRoomSize
 ];
-const invalidStartingLocations = [
+const invalidStartingCoordinates = [
     [-1, -1], 
     [-5, -5], 
     [-1, 1], 
@@ -23,9 +23,9 @@ const invalidStartingLocations = [
     [mockRoomSize[0] + 1, mockRoomSize[1] + 1]
 ];
 
-Feature('Hoover Starting Locations')
+Feature('Hoover Starting Coordinates')
 
-    Data(validStartingLocations).Scenario('Should return success for valid starting location', async ({I, current}) => {
+    Data(validStartingCoordinates).Scenario('Should return success for valid starting coordinates', async ({I, current}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
             "roomSize": mockRoomSize, 
             "coords": current, 
@@ -36,7 +36,7 @@ Feature('Hoover Starting Locations')
             `The response code was not 200 OK, it was ${response.statusText}`)
     });
 
-    Data(invalidStartingLocations).Scenario('Should return bad request for invalid starting location:', async ({I, current}) => {
+    Data(invalidStartingCoordinates).Scenario('Should return bad request for invalid starting coordinates:', async ({I, current}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
             "roomSize": mockRoomSize, 
             "coords": current, 

@@ -7,9 +7,6 @@ exports.config = {
     },
     REST: {
       endpoint: 'http://localhost:8080',
-      onRequest: (request) => { 
-
-      },
       defaultHeaders: {
         "Content-Type": "application/json"
       }
