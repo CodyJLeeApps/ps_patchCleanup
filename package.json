@@ -20,11 +20,9 @@
     "url": "https://github.com/CodyJLeeApps/ps_patchCleanup/issues"
   },
   "homepage": "https://github.com/CodyJLeeApps/ps_patchCleanup#readme",
-  "dependencies": {
-    
-  },
   "devDependencies": {
     "codeceptjs": "^3.1.2",
-    "playwright": "^1.14.1"
+    "codeceptjs-chai": "^2.3.2",
+    "faker": "^5.5.3"
   }
 }
