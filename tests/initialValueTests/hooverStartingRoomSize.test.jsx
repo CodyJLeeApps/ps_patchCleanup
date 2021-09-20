@@ -3,7 +3,7 @@
     and movement instruction set so that it can validate the API responds properly to room size input. The room size should be valid rectangular inputs, i.e. [2, 3] or [5, 5]
 */
 
-// mock constants
+// Mock Constants
 const mockCoords = [0,0];
 const mockDirtPatches = [];
 const mockInstructions = '';
@@ -15,7 +15,7 @@ const mockPostRequestBody = {
     instructions: mockInstructions
 };
 
-// test inputs
+// Test Inputs
 const validRoomSizes = [
     [1, 1],
     [2, 2],
