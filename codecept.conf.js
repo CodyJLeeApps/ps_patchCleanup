@@ -1,5 +1,5 @@
 exports.config = {
-  tests: 'tests/*.test.jsx',
+  tests: 'tests/**/*.test.jsx',
   output: './output',
   helpers: {
     ChaiWrapper : {
