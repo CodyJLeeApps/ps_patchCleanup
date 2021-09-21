@@ -18,13 +18,13 @@ const mockPostRequestBody = {
 
 // Test Inputs
 const validPatchCoordinates = [
-    [[1, 0]],
     [[5, 5]],
     [[2, 3], [3, 4]],
     [[3, 2], [1, 2], [2, 2]]
 ];
 
 const invalidPatchCoordinates = [
+    [[1, 0]],
     [[-1, -1]],
     [[-5, -5]],
     [[-1, 1]],
