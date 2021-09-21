@@ -25,6 +25,8 @@ const validPatchCoordinates = [
 
 const invalidPatchCoordinates = [
     [[1, 0]],
+    [[0, 1]],
+    [[6, 6]],
     [[-1, -1]],
     [[-5, -5]],
     [[-1, 1]],
