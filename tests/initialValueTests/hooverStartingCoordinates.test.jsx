@@ -20,9 +20,10 @@ const mockPostRequestBody = {
 // that would be inside the bounds of the room;
 // i.e. inside of [0, 0] -> [roomSizeX, roomSizeY]
 const validStartingCoordinates = [
-    [0, 0],
     [1, 1],
     [2, 4],
+    [mockRoomSize[0], 1],
+    [1, mockRoomSize[1]],
     mockRoomSize
 ];
 
@@ -30,6 +31,7 @@ const validStartingCoordinates = [
 // that would be outside the bounds of the room; 
 // i.e. outside of [0, 0] -> [roomSizeX, roomSizeY]
 const invalidStartingCoordinates = [
+    [0, 0],
     [-1, -1], 
     [-5, -5], 
     [-1, 1], 
