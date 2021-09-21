@@ -33,7 +33,7 @@ const invalidInstructions = [
     'ABCD'
 ];
 
-Feature('Driving Directions')
+Feature('Driving Directions Entry')
 
     Data(validInstructions).Scenario('Should return success for valid instructions', async ({I, current}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
