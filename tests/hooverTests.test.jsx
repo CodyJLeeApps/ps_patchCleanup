@@ -92,7 +92,7 @@ Feature('Patch cleanup and final Hoover location is properly processed')
         I.assertEqual(response.statusText, 'OK',
             `The response was not 200 OK, it was ${response.statusText}`);
         I.assertEqual(response.data.patches, 1);
-        I.assertEqual(response.data.coords, [2, 2]);
+        I.assertDeepEqual(response.data.coords, [2, 2]);
     });
 
     /******************************
@@ -117,12 +117,12 @@ Feature('Patch cleanup and final Hoover location is properly processed')
         I.assertEqual(response.statusText, 'OK',
             `The response was not 200 OK, it was ${response.statusText}`);
         I.assertEqual(response.data.patches, 2);
-        I.assertEqual(response.data.coords, [5, 5]);
+        I.assertDeepEqual(response.data.coords, [5, 5]);
     });
 
     /******************************
      * Example room for the scenario below
-     * with patch locations [[1, 4]] array & `mockStartingLoc`
+     * with patch locations [[1, 4]] & `mockStartingLoc`
     _______________________________
     6 |   |   |   |
     5 |   |   |   |
@@ -132,15 +132,61 @@ Feature('Patch cleanup and final Hoover location is properly processed')
     1 | S |   |   |
     0 | 1 | 2 | 3 |
     *******************************/
-    Scenario('when the Hoover moves through the room without hitting a dirt patch', async ({I}) => {
+    Scenario('when the Hoover moves through the room without hitting a dirt patch but hits a wall in a large room', async ({I}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
-            roomSize: mockRoomSize,
+            roomSize: [3, 6],
             coords: mockStartingLoc,
-            patches: mockPatches,
+            patches: [[1, 4]],
             instructions: 'EENNNNN'
         });
         I.assertEqual(response.statusText, 'OK',
             `The response was not 200 OK, it was ${response.statusText}`);
         I.assertEqual(response.data.patches, 0);
-        I.assertEqual(response.data.coords, [3, 6]);
-    })
+        I.assertDeepEqual(response.data.coords, [3, 6]);
+    });
+
+    /******************************
+     * Example room for the scenario below
+     * with patch locations [[1, 2]] & `mockStartingLoc`
+    _______________________________
+    4 |   |   |   |
+    3 | X |   |   |
+    2 |   |   |   |
+    1 | S |   |   |
+    0 | 1 | 2 | 3 |
+    *******************************/
+    Scenario('when the Hoover moves through the room without hitting a dirt patch or wall in a small room', async ({I}) => {
+        const response = await I.sendPostRequest('/v1/cleaning-sessions', {
+            roomSize: [3, 4],
+            coords: mockStartingLoc,
+            patches: [[1, 3]],
+            instructions: 'EN'
+        });
+        I.assertEqual(response.statusText, 'OK',
+            `The response was not 200 OK, it was ${response.statusText}`);
+        I.assertEqual(response.data.patches, 0);
+        I.assertDeepEqual(response.data.coords, [2, 2]);
+    });
+
+    /******************************
+     * Example room for the scenario below
+     * with patch locations [[1, 2]] & `mockStartingLoc`
+    _______________________________
+    4 |   |   |   |
+    3 | X |   |   |
+    2 |   |   |   |
+    1 | S |   |   |
+    0 | 1 | 2 | 3 |
+    *******************************/
+    Scenario('when the Hoover stays stationary in a small room', async ({I}) => {
+        const response = await I.sendPostRequest('/v1/cleaning-sessions', {
+            roomSize: [3, 4],
+            coords: mockStartingLoc,
+            patches: [[1, 3]],
+            instructions: ''
+        });
+        I.assertEqual(response.statusText, 'OK',
+            `The response was not 200 OK, it was ${response.statusText}`);
+        I.assertEqual(response.data.patches, 0);
+        I.assertDeepEqual(response.data.coords, [1, 1]);
+    });
