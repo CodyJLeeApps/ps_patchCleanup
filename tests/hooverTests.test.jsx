@@ -1,3 +1,8 @@
+/*
+    This test suite assumes valid input values for:
+    Room Size, Hoover Starting Coordinates, Dirt Patch Coordinates, and Instructions
+    Once the request is sent these tests validate that the output values are correct for the input values.
+*/
 const mockRoomSize = [6, 6];
 const mockOrigin = [0, 0];
 const mockCenter = [3, 3];
@@ -114,3 +119,28 @@ Feature('Patch cleanup and final Hoover location is properly processed')
         I.assertEqual(response.data.patches, 2);
         I.assertEqual(response.data.coords, [5, 5]);
     });
+
+    /******************************
+     * Example room for the scenario below
+     * with patch locations [[1, 4]] array & `mockStartingLoc`
+    _______________________________
+    6 |   |   |   |
+    5 |   |   |   |
+    4 | X |   |   |
+    3 |   |   |   |
+    2 |   |   |   |
+    1 | S |   |   |
+    0 | 1 | 2 | 3 |
+    *******************************/
+    Scenario('when the Hoover moves through the room without hitting a dirt patch', async ({I}) => {
+        const response = await I.sendPostRequest('/v1/cleaning-sessions', {
+            roomSize: mockRoomSize,
+            coords: mockStartingLoc,
+            patches: mockPatches,
+            instructions: 'EENNNNN'
+        });
+        I.assertEqual(response.statusText, 'OK',
+            `The response was not 200 OK, it was ${response.statusText}`);
+        I.assertEqual(response.data.patches, 0);
+        I.assertEqual(response.data.coords, [3, 6]);
+    })
