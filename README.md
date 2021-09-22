@@ -53,4 +53,3 @@ Given that the coordinate system of the room uses Cardinal Directions it is assu
 Full workflow tests were written to verify that given a valid input, the API will process and output the correct values for final Hoover coordinates, as well as the number of dirt patches cleaned during the session. Upon testing these workflows the following bugs were identified:
 
 - This is a similar bug to the starting Hoover location coordinate issue where the Hoover can't start at the maximum dimensions... In this case however the Hoover is unable to move to the maximum Y location, i.e. with room dimensions [5, 5] the Hoover is unable to move into the [5, 5] location.
--
