@@ -11,6 +11,16 @@ To get started running tests there are just three steps needed (assuming the use
 
 After step three the user will see the test results in the terminal. The test suite as well as the results of the tests are discussed below.
 
+## Project Assumptions
+When reviewing the project description and goals a few assumptions were made on my part to more fully clarify the requirements of the API
+- The room size should be non-zero, and non-negative.
+- The room walls reside on the outside of the room size coordinates, i.e. a room size of [5, 5] with 25 possible locations would have walls which would stop the Hoover from reaching location [6, 6], [6, 5], or [5, 6].
+- The Hoover starting coordinates should be within the bounds of the room, i.e. non-zero, and non-negative.
+- Dirt patch location should also be within the bounds of the room, i.e. non-zero, and non-negative.
+- The dirt patch array can be an empty array, representing a clean room with no dirt
+- An instruction set can be empty
+- An instruction set will only contain NESW, but lowercase letters should be allowed
+
 ## Test Suite
 ### Testing Framework Decision
 The testing framework that was chosen for this project was the CodeceptJs test framework. This was chosen for a couple simple reasons: A - I had not used this testing framework before and I wanted to get experience with it, and B - This testing framework is used at Platform Science so it would make sense to go ahead and get familiar with it early on.
