@@ -3,7 +3,7 @@ The following is a report of the bugs that were found within the pltsci-sdet-ass
 Below is a summary of the testing suite, as well as a summary of the open bugs that were discovered in the API.
 
 ## Getting Started
-To get started running tests there are really just three steps needed:
+To get started running tests there are just three steps needed (assuming the user has already installed Git, Node, and NPM on their machine):
 
 1. Start up the Docker container for the PLTSI-SDET-Asignment as described in it's README
 2. Navigate to the root directory of this repository and run `npm install`
@@ -13,7 +13,7 @@ After step three the user will see the test results in the terminal. The test su
 
 ## Test Suite
 ### Testing Framework Decision
-The testing framework that was chosen for this project was the CodeceptJs test framework. This was chosen for a couple simple reasons: A - I had not used this testing framework before and I wanted to get experience with it, and B - This testing framework is used at Platform Science so it would make sense to go ahead and get familiar with it.
+The testing framework that was chosen for this project was the CodeceptJs test framework. This was chosen for a couple simple reasons: A - I had not used this testing framework before and I wanted to get experience with it, and B - This testing framework is used at Platform Science so it would make sense to go ahead and get familiar with it early on.
 
 In addition to CodeceptJS I chose to install CodeceptJS-Chai, another NPM package that focuses on asserts within the test framework. This package allows assertions to be added as steps in the output, as well as having access to the Chai assertion functions.
 
@@ -53,3 +53,4 @@ Given that the coordinate system of the room uses Cardinal Directions it is assu
 Full workflow tests were written to verify that given a valid input, the API will process and output the correct values for final Hoover coordinates, as well as the number of dirt patches cleaned during the session. Upon testing these workflows the following bugs were identified:
 
 - This is a similar bug to the starting Hoover location coordinate issue where the Hoover can't start at the maximum dimensions... In this case however the Hoover is unable to move to the maximum Y location, i.e. with room dimensions [5, 5] the Hoover is unable to move into the [5, 5] location.
+- The dirt patch cleanup output is incorrect for multiple tests. Whenever the Hoover moves in the room even without hitting a patch of dirt the API processes the movement as if the Hoover did hit patches of dirt. The only test for patch cleanup that does pass as expected is the test that where the Hoover does not move in the room and does not trigger a patch cleaup.

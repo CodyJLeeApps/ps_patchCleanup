@@ -25,7 +25,7 @@ const mockPostRequestBody = {
 
 Feature('Driving Directions and Input Coordinates are properly processed')
 
-    Scenario('Should move the Hoover in the N Direction as instructed until it hits the wall and spins', async ({I}) => {
+    Scenario('when the instructions move the Hoover in the N Direction until it hits the wall and spins', async ({I}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
             ...mockPostRequestBody,
             coords: mockCenter,
@@ -37,7 +37,7 @@ Feature('Driving Directions and Input Coordinates are properly processed')
             `The end location was not [3, 6] as expected, it was: ${response.data.coords}`) // Needed to use DeepEqual to compare the objects
     });
 
-    Scenario('Should move the Hoover in the S Direction as instructed until it hits the wall and spins', async ({I}) => {
+    Scenario('when the instructions move the Hoover in the S Direction until it hits the wall and spins', async ({I}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
             ...mockPostRequestBody,
             coords: mockCenter,
@@ -49,7 +49,7 @@ Feature('Driving Directions and Input Coordinates are properly processed')
             `The end location was not [3, 0] as expected, it was: ${response.data.coords}`)
     });
 
-    Scenario('Should move the Hoover in the NE direction as instructed until it hits a wall and spins', async ({I}) => {
+    Scenario('when the instructions move the Hoover in the NE direction until it hits a wall and spins', async ({I}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
             ...mockPostRequestBody,
             coords: mockCenter,
@@ -61,7 +61,7 @@ Feature('Driving Directions and Input Coordinates are properly processed')
             `The end location of the hoover was not ${mockRoomSize}, it was: ${response.data.coords}`)
     });
 
-    Scenario('Should move the Hoover in the SW direction as instructed until it hits the wall at the origin and spins', async ({I}) => {
+    Scenario('when the instructions move the Hoover in the SW direction until it hits the wall at the origin and spins', async ({I}) => {
         const response = await I.sendPostRequest('/v1/cleaning-sessions', {
             ...mockPostRequestBody,
             instructions: southWestDirections
